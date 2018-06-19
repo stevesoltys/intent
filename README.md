@@ -1,4 +1,6 @@
 # intent
+[![Build Status](https://travis-ci.org/stevesoltys/intent.svg?branch=master)](https://travis-ci.org/stevesoltys/intent)
+
 An intent recognition library.
 
 ## License
