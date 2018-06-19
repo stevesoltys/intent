@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.8.1'
+    }
+}
+
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '1.12'
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
+
+ext {
+    projectOrganization = 'stevesoltys'
+    projectGroup = 'com.stevesoltys.intent'
+    projectName = 'intent'
+    projectVersion = '0.1.0'
+
+    projectDescription = 'An intent recognition library.'
+    projectWebsite = 'https://github.com/stevesoltys/intent'
+    projectLicense = 'CC-BY-NC-SA-4.0'
+}
+
+group projectGroup
+version projectVersion
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.logging.log4j:log4j-api:2.11.0'
+    compile 'org.apache.logging.log4j:log4j-core:2.11.0'
+
+    compile 'com.google.guava:guava:25.1-jre'
+    compile 'org.apache.commons:commons-lang3:3.7'
+
+    compile 'org.apache.opennlp:opennlp-tools:1.8.4'
+    compile 'info.debatty:java-string-similarity:1.0.1'
+
+    compileOnly "org.projectlombok:lombok:1.16.16"
+}
+
+publish {
+    userOrg = "${projectOrganization}"
+    groupId = "${projectGroup}"
+    artifactId = "${projectName}"
+    publishVersion = "${projectVersion}"
+
+    desc = "${projectDescription}"
+    website = "${projectWebsite}"
+    licences = ["${projectLicense}"]
+}
