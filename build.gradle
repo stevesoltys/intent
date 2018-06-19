@@ -2,9 +2,6 @@ buildscript {
     repositories {
         jcenter()
     }
-    dependencies {
-        classpath 'com.novoda:bintray-release:0.8.1'
-    }
 }
 
 plugins {
@@ -13,21 +10,9 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'maven'
-apply plugin: 'com.novoda.bintray-release'
 
-ext {
-    projectOrganization = 'stevesoltys'
-    projectGroup = 'com.stevesoltys.intent'
-    projectName = 'intent'
-    projectVersion = '0.1.0'
-
-    projectDescription = 'An intent recognition library.'
-    projectWebsite = 'https://github.com/stevesoltys/intent'
-    projectLicense = 'CC-BY-NC-SA-4.0'
-}
-
-group projectGroup
-version projectVersion
+group 'com.stevesoltys.intent'
+version '0.1.0'
 
 sourceCompatibility = 1.8
 
@@ -46,15 +31,4 @@ dependencies {
     compile 'info.debatty:java-string-similarity:1.0.1'
 
     compileOnly "org.projectlombok:lombok:1.16.16"
-}
-
-publish {
-    userOrg = "${projectOrganization}"
-    groupId = "${projectGroup}"
-    artifactId = "${projectName}"
-    publishVersion = "${projectVersion}"
-
-    desc = "${projectDescription}"
-    website = "${projectWebsite}"
-    licences = ["${projectLicense}"]
 }
