@@ -10,6 +10,7 @@ public class DefaultSemanticHeuristic implements SemanticHeuristic {
 
     @Override
     public double compare(Pair<PartOfSpeech, String> first, Pair<PartOfSpeech, String> second) {
-        return first.equals(second) ? 1 : 0;
+        return first.getLeft().equals(second.getLeft()) &&
+                first.getRight().equalsIgnoreCase(second.getRight()) ? 1 : 0;
     }
 }
