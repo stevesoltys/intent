@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * @author Steve Soltys
  */
-@Builder
 @AllArgsConstructor
 @EqualsAndHashCode(of = "identifier")
 public class Intent implements Serializable {
@@ -23,7 +22,6 @@ public class Intent implements Serializable {
     @Getter
     private final List<Expression> expressions;
 
-    @Builder.Default
     @Getter
     private IntentContext context = IntentContext.builder().build();
 }
