@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -23,6 +24,9 @@ public class Expression implements Serializable {
     private final String expression;
 
     @Getter
+    private final String expressionPattern;
+
+    @Getter
     private final List<Token> tokens;
 
     @Getter
@@ -33,9 +37,10 @@ public class Expression implements Serializable {
     }
 
     public Expression(String expression, List<Dependency> dependencies) {
-        this.expression = expression;
+        this.expression = Pattern.quote(expression);
         this.dependencies = dependencies;
 
+        expressionPattern = Pattern.quote(expression);
         tokens = buildTokens();
     }
 
@@ -47,7 +52,12 @@ public class Expression implements Serializable {
         this.tokens = tokens;
         this.dependencies = dependencies;
 
-        expression = String.join(" ", tokens.stream().map(Token::getValue)
+        expression = String.join(" ", tokens.stream()
+                .map(Token::getValue)
+                .collect(Collectors.toList()));
+
+        expressionPattern = String.join(" ", tokens.stream()
+                .map(token -> token.isEntity() ? token.getValue() : Pattern.quote(token.getValue()))
                 .collect(Collectors.toList()));
     }
 
