@@ -37,7 +37,7 @@ public class Expression implements Serializable {
     }
 
     public Expression(String expression, List<Dependency> dependencies) {
-        this.expression = Pattern.quote(expression);
+        this.expression = expression;
         this.dependencies = dependencies;
 
         expressionPattern = Pattern.quote(expression);
